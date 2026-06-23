@@ -7,6 +7,6 @@ public class J2thymescaffLauncher {
 	
 	// This private constructor prevents instantiation
 	private J2thymescaffLauncher() {
-		throw new IllegalStateException("Utility class");
+		throw new IllegalStateException("Error. This utility class cannot be instantiated.");
 	}
 }
