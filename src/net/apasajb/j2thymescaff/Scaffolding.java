@@ -1,14 +1,15 @@
 package net.apasajb.j2thymescaff;
 
+import jakarta.persistence.Entity;
 
 public class Scaffolding {
 	
-	public Boolean isValidJpaEntity(Object myClass) {
+	public Boolean isValidJpaEntity(Entity myClass) {
 		
-		boolean isEntity = false;
+		boolean isClassValidEntity = false;
 		
 		//isEntity = myClass.getClass().isAnnotationPresent(jakarta.persistence.Entity.class);
 		
-		return isEntity;
+		return isClassValidEntity;
 	}
 }
