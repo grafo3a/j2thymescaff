@@ -9,8 +9,13 @@ public class J2thymescaffLauncher {
 		
 		Logger.info("\n==== Debut du demarrage de l'outil J2thymescaff ====");
 		
+		/*
 		Scaffolding scaffObject = new Scaffolding();
 		scaffObject.getListeAttributs();
+		*/
+		
+		Scaffolding scaffObject = new Scaffolding();
+		scaffObject.ajouterTexteDansFichier();
 	}
 	
 	
