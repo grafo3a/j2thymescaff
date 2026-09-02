@@ -49,28 +49,28 @@ public class Scaffolding {
 	}
 	
 	
-	public void ajouterTexteDansFichier() {
+	public void ajouterTexteDansFichier(String textToAppend) {
 		
 		String filePath = "C:\\tmp\\ScaffExports\\journal.log";
-		String textToAppend = "==== This is a new line to append.\n";
 		
 		// Ensure the file exists, create if not
-        try {
-            Path path = Path.of(filePath);
-            if (!Files.exists(path)) {
-                Files.createFile(path);
-                System.out.println("File did not exist. Created new file at: " + filePath);
-            }
-
-            // Open FileWriter in append mode (true)
-            try (FileWriter writer = new FileWriter(filePath, true)) {
-                writer.write(textToAppend);
-                System.out.println("Text appended successfully.");
-            }
-
-        } catch (IOException e) {
-            System.err.println("Error while appending to file: " + e.getMessage());
-            e.printStackTrace();
-        }
+		try {
+			Path path = Path.of(filePath);
+			
+			if (!Files.exists(path)) {
+				Files.createFile(path);
+				Logger.info("The File did not exist. New file created: " + filePath);
+			}
+			
+			// Open FileWriter in append mode (true)
+			try (FileWriter writer = new FileWriter(filePath, true)) {
+				writer.write(textToAppend);
+				Logger.info("Text appended successfully.");
+			}
+			
+		} catch (IOException ex) {
+			Logger.error("Error while appending to file: " + ex.getMessage());
+			ex.printStackTrace();
+		}
 	}
 }
