@@ -1,7 +1,6 @@
 package net.apasajb.j2thymescaff;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -54,23 +53,37 @@ public class Scaffolding {
 		String filePath = "C:\\tmp\\ScaffExports\\journal.log";
 		
 		// Ensure the file exists, create if not
-		try {
-			Path path = Path.of(filePath);
+		
+		boolean isFilePresent = false;
+		Path path = Path.of(filePath);
+		
+		if (!Files.exists(path)) {
+			Logger.info("The File does not exist. We'll create it.");
 			
-			if (!Files.exists(path)) {
+			try {
 				Files.createFile(path);
-				Logger.info("The File did not exist. New file created: " + filePath);
+				Logger.info("New file created: " + filePath);
+				isFilePresent = true;
+				
+			} catch (Exception ex) {
+				Logger.error("Error while writing to file: " + ex.getMessage());
 			}
 			
-			// Open FileWriter in append mode (true)
+		} else {
+			isFilePresent = true;
+		}
+		
+		if (isFilePresent) {
+			
+			// Open FileWriter in append mode (=> true)
 			try (FileWriter writer = new FileWriter(filePath, true)) {
-				writer.write(textToAppend);
+				
+				writer.write(textToAppend + "\n");
 				Logger.info("Text appended successfully.");
+				
+			} catch (Exception ex) {
+				Logger.error("Error while writing to file: " + ex.getMessage());
 			}
-			
-		} catch (IOException ex) {
-			Logger.error("Error while appending to file: " + ex.getMessage());
-			ex.printStackTrace();
 		}
 	}
 }

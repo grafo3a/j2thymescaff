@@ -12,7 +12,7 @@ public class J2thymescaffLauncher {
 		Scaffolding scaffObject = new Scaffolding();
 		//scaffObject.getListeAttributs();
 		
-		String textToAppend = "\n==== Une ligne de plus.";
+		String textToAppend = "==== Une ligne de plus.";
 		scaffObject.ajouterTexteDansFichier(textToAppend);
 	}
 	
