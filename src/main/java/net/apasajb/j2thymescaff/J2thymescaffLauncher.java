@@ -7,13 +7,10 @@ public class J2thymescaffLauncher {
 	
 	public static void main(String[] args) {
 		
-		Logger.info("\n==== Debut du demarrage de l'outil J2thymescaff ====");
+		Logger.info("\n==== Debut Execution de l'outil J2thymescaff.");
 		
 		Scaffolding scaffObject = new Scaffolding();
-		//scaffObject.getListeAttributs();
-		
-		String textToAppend = "==== Une ligne de plus.";
-		scaffObject.ajouterTexteDansFichier(textToAppend);
+		scaffObject.start();
 	}
 	
 	// This private constructor prevents instantiation

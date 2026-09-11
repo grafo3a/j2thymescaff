@@ -12,6 +12,14 @@ import jakarta.persistence.Entity;
 
 public class Scaffolding {
 	
+	public void start() {
+		
+		String listeAttributs = this.getListeAttributs();
+		Logger.info(listeAttributs);
+		Logger.info("\n==== Fin Execution de l'outil J2thymescaff");
+	}
+	
+	
 	public Boolean isValidJpaEntity(Entity myClass) {
 		
 		boolean isClassValidEntity = false;
@@ -26,25 +34,33 @@ public class Scaffolding {
 	}
 	
 	
-	public void getListeAttributs() {
+	public String getListeAttributs() {
+		
 		String userDir = System.getProperty("user.dir");
-		Logger.info("\n ==== pwd: " + userDir + "/");
+		Logger.info("\n ==== pwd: " + userDir + "\\");
 		
 		Class<?> entityClass = Compte.class;
 		Field[] fields = entityClass.getDeclaredFields();
-		String attribut = "";
 		
-		Logger.info("");
+		String detailsAttribut = "";
+		String listeAttributs = "";
+		
+		Logger.info("\n\n==== DETAILS DE L'ENTITEZ ====");
 		
 		for (Field field : fields) {
-			// Optional: Skip fields annotated with @Transient
-			if (field.isAnnotationPresent(jakarta.persistence.Transient.class)) {
-				continue;
-			}
 			
-			attribut = "*Field name: " + field.getName() + " | Type: " + field.getType().getSimpleName();
-			Logger.info(attribut);
+			/* This block skips fields annotated with @Transient
+			if (field.isAnnotationPresent(jakarta.persistence.Transient.class)) { continue; } */
+			
+			detailsAttribut = "*Field name: " + field.getName() + " / Type: " + field.getType().getSimpleName();
+			Logger.info(detailsAttribut);
+			
+			listeAttributs = listeAttributs + field.getName() + "\n";
 		}
+		
+		//Logger.info("\n\n==== LISTE ATTRIBUTS DE L'ENTITEZ:\n" + listeAttributs);
+		
+		return listeAttributs;
 	}
 	
 	
