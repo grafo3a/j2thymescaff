@@ -66,19 +66,19 @@ public class Scaffolding {
 	
 	public void ajouterTexteDansFichier(String textToAppend) {
 		
-		String filePath = "C:\\tmp\\ScaffExports\\journal.log";
+		String outputFile = "C:\\tmp\\ScaffExports\\export.txt";
 		
 		// Ensure the file exists, create if not
 		
 		boolean isFilePresent = false;
-		Path path = Path.of(filePath);
+		Path path = Path.of(outputFile);
 		
 		if (!Files.exists(path)) {
 			Logger.info("The File does not exist. We'll create it.");
 			
 			try {
 				Files.createFile(path);
-				Logger.info("New file created: " + filePath);
+				Logger.info("New file created: " + outputFile);
 				isFilePresent = true;
 				
 			} catch (Exception ex) {
@@ -92,7 +92,7 @@ public class Scaffolding {
 		if (isFilePresent) {
 			
 			// Open FileWriter in append mode (=> true)
-			try (FileWriter writer = new FileWriter(filePath, true)) {
+			try (FileWriter writer = new FileWriter(outputFile, true)) {
 				
 				writer.write(textToAppend + "\n");
 				Logger.info("Text appended successfully.");
