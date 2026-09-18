@@ -7,8 +7,6 @@ import java.nio.file.Path;
 
 import org.tinylog.Logger;
 
-import jakarta.persistence.Entity;
-
 
 public class Scaffolding {
 	
@@ -16,14 +14,15 @@ public class Scaffolding {
 		
 		String listeAttributs = this.getListeAttributs();
 		Logger.info(listeAttributs);
+		
 		Logger.info("\n==== Fin Execution de l'outil J2thymescaff");
 	}
 	
 	
-	public Boolean isValidJpaEntity(Entity myClass) {
+	public Boolean isValidJpaEntity(Object myClass) {
 		
 		boolean isClassValidEntity = false;
-		String myClassName = myClass.name();
+		String myClassName = myClass.getClass().getName();
 		
 		Logger.info("\nDebut verif si la classe " + myClassName + " est une entit/e valide.");
 		isClassValidEntity = myClass.getClass().isAnnotationPresent(jakarta.persistence.Entity.class);
